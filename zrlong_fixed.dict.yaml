@@ -4,7 +4,7 @@
 # author: 晡时之光 -> modded by Elflare
 ---
 name: zrlong_fixed
-version: "2025-11-14 14:06:02"
+version: "2026-02-06 22:49:42"
 sort: by_weight
 columns:
   - text
@@ -2805,6 +2805,7 @@ encoder:
 华	hgu	24013
 华	hsu	24013
 绮	qgs	23912
+胤	yvp	23866
 纤	qas	23863
 陶	yie	23862
 瓦	wia	23841
@@ -3644,7 +3645,6 @@ encoder:
 瞠	ico	6874
 嚅	rlk	6865
 怆	iex	6862
-券	xcd	6859
 裆	duy	6838
 腺	xao	6833
 箐	qwv	6828
@@ -3697,6 +3697,7 @@ encoder:
 炬	jfh	6448
 捎	uqf	6444
 瞑	mno	6405
+渲	xcd	6400
 赂	lhb	6380
 麓	lhl	6365
 铿	kcj	6349
@@ -3950,6 +3951,7 @@ encoder:
 毗	pbt	3984
 褴	lky	3959
 壬	rsp	3952
+薅	hq	3556
 旮	glj	3168
 峋	xfu	3167
 呲	cjk	3154
@@ -4131,7 +4133,7 @@ encoder:
 珣	xfw	2240
 忪	skx	2232
 妗	jvn	2231
-蒿	hq	2230
+蒿	hqc	2230
 钛	toj	2229
 磺	hbu	2222
 岷	mcu	2214
@@ -4764,7 +4766,6 @@ encoder:
 铣	xpj	558
 墀	ibt	556
 妖	eqn	556
-薅	hqc	556
 弔	dlg	555
 艟	ikv	555
 彘	vta	554
@@ -5631,6 +5632,7 @@ encoder:
 黾	mpk	48
 筘	krv	47
 粥	efm	47
+胤	evp	47
 蠊	lvi	47
 谿	xjg	47
 躔	ikz	47
@@ -6396,7 +6398,6 @@ encoder:
 㖹	fok	0
 㖻	nmk	0
 㖻	rrk	0
-㖾	eil	0
 㗂	uyk	0
 㗄	kak	0
 㗉	ldq	0
@@ -6729,8 +6730,6 @@ encoder:
 㥨	ufx	0
 㥨	wjx	0
 㥮	ixx	0
-㥯	exv	0
-㥯	yxv	0
 㥰	sqx	0
 㥵	hrx	0
 㥶	six	0
@@ -6951,7 +6950,6 @@ encoder:
 㮏	ntm	0
 㮐	uym	0
 㮒	ehm	0
-㮕	rsm	0
 㮛	ebm	0
 㮟	klm	0
 㮡	gcm	0
@@ -7702,6 +7700,7 @@ encoder:
 䎧	bdl	0
 䎧	pal	0
 䎨	ajl	0
+䎨	eil	0
 䎨	yil	0
 䎩	zjl	0
 䎪	nil	0
@@ -12489,6 +12488,7 @@ Bilibili	bv
 是啥	uu
 实现	ux
 这么	v
+这么	vm
 知道	vd
 知道了	vdl
 只有	ve
@@ -12505,8 +12505,12 @@ Bilibili	bv
 玩玩	ww
 无限	wx
 无线	wx
+发现	fx	100
+发型	fx	99
 位置	wv	100
 为止	wv	50
+也有	ee	50
+有点	ed	50
 现在	x
 习惯	xg
 现实	xu
@@ -12528,10 +12532,12 @@ Bilibili	bv
 一样	yy
 有个	yzg
 怎么	z
+怎么	zm
 自动	zd
 自己	zj
 昨天	zt
 在线	zx
+河童	het
 一	oba
 丨	oba
 亅	oba
@@ -12806,7 +12812,8 @@ Bilibili	bv
 既	jtg	1
 栗	ltx	1
 馍	meud	1000
-颂	sygy	1000
+颂	syg	1000
+颂	sygy	1
 妥	tlv	1
 衰	ugw	1
 史	ugk	1
@@ -12837,3 +12844,6 @@ Bilibili	bv
 膝	xjou	2
 惜	xjxo	2
 裴	prf	2
+舀	yxv	102
+舀	exv	1
+桂	gfmt	1
