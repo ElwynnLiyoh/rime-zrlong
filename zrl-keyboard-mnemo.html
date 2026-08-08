@@ -27,6 +27,7 @@
     padding: 40px 20px;
     color: var(--text-main);
     -webkit-font-smoothing: antialiased;
+    overflow-x: auto;
   }
   .container {
     margin: 0 auto;
@@ -63,10 +64,11 @@
   .toolbar button.secondary:hover { background: var(--text-gray); }
 
   #capture {
-    display: flex;
-    justify-content: center;
+    display: block;
     padding: 10px;
     margin: 0 auto;
+    overflow-x: auto;
+    text-align: center;
   }
   .keyboard {
     background: #ffffff;
