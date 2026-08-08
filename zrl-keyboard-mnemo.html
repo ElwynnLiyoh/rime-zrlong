@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>自然龙双拼键位助记图</title>
+<style>
+  :root {
+    --primary: #0d9488;
+    --primary-hover: #0f766e;
+    --primary-dark: #134e4a;
+    --primary-light: #ccfbf1;
+    --primary-soft: #f0fdfa;
+    --text-main: #1e293b;
+    --text-gray: #475569;
+    --text-light: #94a3b8;
+    --bg-body: #f8fafc;
+    --border: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    background: var(--bg-body);
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    margin: 0 auto;
+    text-align: center;
+  }
+  h1 {
+    font-weight: 500;
+    font-size: 36px;
+    margin-bottom: 8px;
+    color: var(--primary-dark);
+    letter-spacing: 2px;
+  }
+  .subtitle {
+    color: var(--text-gray);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .toolbar {
+    margin-bottom: 20px;
+  }
+  .toolbar button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 6px;
+    transition: background 0.2s;
+  }
+  .toolbar button:hover { background: var(--primary-hover); }
+  .toolbar button.secondary { background: var(--text-light); }
+  .toolbar button.secondary:hover { background: var(--text-gray); }
+
+  #capture {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 0 auto;
+  }
+  .keyboard {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: var(--shadow-lg);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .row:last-child {
+    margin-bottom: 0;
+    justify-content: flex-start;
+    padding-left: 131px;
+    align-self: flex-start;
+  }
+  .key {
+    width: 128px;
+    height: 148px;
+    margin: 0 5px;
+    background: linear-gradient(180deg, #ffffff 0%, var(--primary-soft) 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+    user-select: none;
+    padding: 10px 6px 8px;
+  }
+  .key:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13,148,136,0.25);
+    border-color: var(--primary);
+  }
+  .key .letter {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .key .code {
+    font-size: 18px;
+    color: #e74c3c;
+    line-height: 1.4;
+    text-align: center;
+    max-width: 120px;
+    word-break: break-all;
+    margin-bottom: auto;
+  }
+  .key .code span {
+    display: inline-block;
+    margin: 0 2px;
+  }
+  .key .mnemo {
+    font-size: 14px;
+    color: var(--text-gray);
+    line-height: 1.2;
+    text-align: center;
+    max-width: 120px;
+    margin-top: 4px;
+    border-top: 1px dashed var(--border);
+    padding-top: 3px;
+    width: 100%;
+    word-break: break-all;
+  }
+  .legend {
+    margin-top: 24px;
+    color: var(--text-light);
+    font-size: 12px;
+  }
+  .legend kbd {
+    background: var(--primary-soft);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    color: var(--primary-dark);
+  }
+
+  .edit-panel {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    z-index: 1000;
+    width: 340px;
+  }
+  .edit-panel.active { display: block; }
+  .edit-panel h3 { margin-bottom: 12px; color: var(--primary-dark); }
+  .edit-panel label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-gray);
+    margin: 10px 0 4px;
+  }
+  .edit-panel input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+  }
+  .edit-panel input:focus { border-color: var(--primary); }
+  .edit-panel .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .edit-panel button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .edit-panel .save { background: var(--primary); color: white; }
+  .edit-panel .cancel { background: var(--primary-soft); color: var(--primary-dark); }
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 999;
+  }
+  .overlay.active { display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>自然龙双拼 · 键位助记图</h1>
+  <p class="subtitle">点击任意按键可编辑韵码和记忆口诀</p>
+
+  <div class="toolbar">
+    <button onclick="exportImage()">下载图片</button>
+    <button class="secondary" onclick="resetData()">重置默认</button>
+  </div>
+
+  <div id="capture">
+    <div class="keyboard" id="keyboard"></div>
+  </div>
+
+  <div class="legend">
+    提示：<kbd>点击按键</kbd> 编辑韵码与记忆，<kbd>下载图片</kbd> 保存为 PNG
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="edit-panel" id="editPanel">
+  <h3>编辑按键 <span id="editKey" style="color:#e74c3c"></span></h3>
+  <label>韵码（用空格或顿号分隔）</label>
+  <input type="text" id="editCode" placeholder="例如：iàn óu ū">
+  <label>记忆口诀</label>
+  <input type="text" id="editMnemo" placeholder="例如：猴骗猪">
+  <div class="actions">
+    <button class="save" onclick="saveEdit()">保存</button>
+    <button class="cancel" onclick="closeEdit()">取消</button>
+  </div>
+</div>
+
+<script>
+const DEFAULT_DATA = {
+  A: { codes: ['iàn','óu','ū'], mnemo: '猴骗猪' },
+  B: { codes: ['āi','í','uáng'], mnemo: '黄鼻哀' },
+  C: { codes: ['iá','iě','ín','ēng','uàn'], mnemo: '蹬断铁琴匣' },
+  D: { codes: ['ái','iā','àng','uān','üè'], mnemo: '来虐荡专家' },
+  E: { codes: ['é','ēn','iǒng','ó','iàng','uàng','īng'], mnemo: '精分冏鹅亮晃脖' },
+  F: { codes: ['èi','éng','èng','uì','ún','ǜ','uài'], mnemo: '废轮碰疼翠绿怪' },
+  G: { codes: ['ǐ','ò','uǎ','uà','uāi','ūn'], mnemo: '揣画蹲起握爪' },
+  H: { codes: ['èr','īn','iòng','ù','ǖ'], mnemo: '二斤护须' },
+  I: { codes: ['à','áo','è','iáng','ǒ','üé','ēi'], mnemo: '学良背勺怕我饿' },
+  J: { codes: ['àn','ī','óng','ěi'], mnemo: '按鸡给虫' },
+  K: { codes: ['án','ér','iē','ióng','ōng'], mnemo: '空熊男儿鳖' },
+  L: { codes: ['ā','ě','iǎo','iào','ú','uó','uǒ'], mnemo: '八国小伙卢可笑' },
+  M: { codes: ['ǎ','iāo','iú','ǔ','ǘ'], mnemo: '牛马驴敲鼓' },
+  N: { codes: ['iǎ','ān','íng','ǒng'], mnemo: '俩宠安宁' },
+  O: { codes: ['ǎn','ěn','èn','iù','uán','ǔn','üě','ài'], mnemo: '朕俺就很爱滚雪团' },
+  P: { codes: ['uǎi','ǎng','iǎn','iōng','ō','uò'], mnemo: '拽挡脸摸错胸' },
+  Q: { codes: ['āo','ēr','iè'], mnemo: '怯猫' },
+  R: { codes: ['ē','éi','iān','òu','ùn'], mnemo: '运肉车添煤' },
+  S: { codes: ['én','uā','uái','uǎn','uō','ǚ','ié'], mnemo: '女神多款槐花鞋' },
+  T: { codes: ['ì','uá','uī'], mnemo: '推地滑' },
+  U: { codes: ['á','ǎi','āng','ěr','iǎng','iáo','uǎng','üē'], mnemo: '约谎桥尔康想买啥' },
+  V: { codes: ['ào','ián','ìn','uǐ'], mnemo: '照腿前进' },
+  W: { codes: ['áng','ǐng','ìng','uí','uāng'], mnemo: '领回王疮病' },
+  X: { codes: ['ǎo','ià','ǐn','ōu'], mnemo: '吵架锦州' },
+  Y: { codes: ['ěng','iāng','òng'], mnemo: '冷冻僵' },
+  Z: { codes: ['iū','iǔ','ǒu'], mnemo: '走咻朽' }
+};
+
+const STORAGE_KEY = 'ziranlong_shuangpin_data';
+
+function loadData() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch (e) {}
+  return JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+
+let keyData = loadData();
+let editingKey = null;
+
+const layout = [
+  ['Q','W','E','R','T','Y','U','I','O','P'],
+  ['A','S','D','F','G','H','J','K','L'],
+  ['Z','X','C','V','B','N','M']
+];
+
+const KEY_W = 128;
+
+function render() {
+  const kb = document.getElementById('keyboard');
+  kb.innerHTML = '';
+  layout.forEach((row) => {
+    const rowDiv = document.createElement('div');
+    rowDiv.className = 'row';
+    row.forEach(letter => {
+      const key = document.createElement('div');
+      key.className = 'key';
+      key.style.width = KEY_W + 'px';
+      key.dataset.letter = letter;
+      const d = keyData[letter] || { codes: [], mnemo: '' };
+      const codesHtml = (d.codes || []).map(c => `<span>${c}</span>`).join(' ');
+      const mnemoHtml = d.mnemo ? `<div class="mnemo">${d.mnemo}</div>` : '';
+      key.innerHTML = `<div class="letter">${letter}</div><div class="code">${codesHtml}</div>${mnemoHtml}`;
+      key.onclick = () => openEdit(letter);
+      rowDiv.appendChild(key);
+    });
+    kb.appendChild(rowDiv);
+  });
+}
+
+function openEdit(letter) {
+  editingKey = letter;
+  document.getElementById('editKey').textContent = letter;
+  const d = keyData[letter] || { codes: [], mnemo: '' };
+  document.getElementById('editCode').value = (d.codes || []).join(' ');
+  document.getElementById('editMnemo').value = d.mnemo || '';
+  document.getElementById('editPanel').classList.add('active');
+  document.getElementById('overlay').classList.add('active');
+}
+
+function closeEdit() {
+  editingKey = null;
+  document.getElementById('editPanel').classList.remove('active');
+  document.getElementById('overlay').classList.remove('active');
+}
+
+function saveEdit() {
+  if (!editingKey) return;
+  const val = document.getElementById('editCode').value.trim();
+  const mnemo = document.getElementById('editMnemo').value.trim();
+  keyData[editingKey] = {
+    codes: val ? val.split(/[\s、,，]+/).filter(Boolean) : [],
+    mnemo: mnemo
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(keyData));
+  closeEdit();
+  render();
+}
+
+function resetData() {
+  if (!confirm('确定要重置为默认数据吗？')) return;
+  keyData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(keyData));
+  render();
+}
+
+function exportImage() {
+  const dpr = 2;
+  const keyW = 256 * dpr;
+  const keyH = 296 * dpr;
+  const gap = 10 * dpr;
+  const padX = 60 * dpr;
+  const padTop = 60 * dpr;
+  const padBot = 50 * dpr;
+  const titleH = 100 * dpr;
+  const radius = 24 * dpr;
+  const rows = layout.map((row, ri) => {
+    const totalW = row.reduce((s, l) => s + keyW, 0) + gap * (row.length - 1);
+    return { row, totalW };
+  });
+  const maxW = Math.max(...rows.map(r => r.totalW));
+  const canvasW = maxW + padX * 2;
+  const canvasH = padTop + titleH + rows.length * keyH + (rows.length - 1) * gap + padBot;
+  const row2Left = rows.length > 1 ? (canvasW - rows[1].totalW) / 2 : 0;
+  const lastRowStart = row2Left + keyW / 2;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = canvasW;
+  canvas.height = canvasH;
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, canvasW, canvasH);
+
+  ctx.fillStyle = '#134e4a';
+  ctx.font = `500 ${56 * dpr}px -apple-system, "PingFang SC", sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillText('自然龙双拼 · 键位助记图', canvasW / 2, padTop);
+
+  rows.forEach((r, ri) => {
+    const rowTotalW = r.totalW;
+    const isLast = ri === rows.length - 1;
+    const startX = isLast
+      ? lastRowStart
+      : (canvasW - rowTotalW) / 2;
+    const y = padTop + titleH + ri * (keyH + gap);
+    let x = startX;
+    r.row.forEach(letter => {
+      const d = keyData[letter] || { codes: [], mnemo: '' };
+
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + keyW - radius, y);
+      ctx.quadraticCurveTo(x + keyW, y, x + keyW, y + radius);
+      ctx.lineTo(x + keyW, y + keyH - radius);
+      ctx.quadraticCurveTo(x + keyW, y + keyH, x + keyW - radius, y + keyH);
+      ctx.lineTo(x + radius, y + keyH);
+      ctx.quadraticCurveTo(x, y + keyH, x, y + keyH - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+
+      const grad = ctx.createLinearGradient(x, y, x, y + keyH);
+      grad.addColorStop(0, '#ffffff');
+      grad.addColorStop(1, '#f0fdfa');
+      ctx.fillStyle = grad;
+      ctx.fill();
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.lineWidth = 2 * dpr;
+      ctx.stroke();
+
+      ctx.fillStyle = '#134e4a';
+      ctx.font = `600 ${56 * dpr}px -apple-system, "PingFang SC", sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(letter, x + keyW / 2, y + 18 * dpr);
+
+      ctx.font = `${34 * dpr}px -apple-system, "PingFang SC", sans-serif`;
+      ctx.fillStyle = '#e74c3c';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      const codes = d.codes || [];
+      const codeY = y + 100 * dpr;
+      const maxCodeW = keyW - 24 * dpr;
+      let line = '';
+      let lineY = codeY;
+      codes.forEach((c, i) => {
+        const test = line ? line + '  ' + c : c;
+        if (ctx.measureText(test).width > maxCodeW && line) {
+          ctx.fillText(line, x + keyW / 2, lineY);
+          line = c;
+          lineY += 38 * dpr;
+        } else {
+          line = test;
+        }
+      });
+      if (line) ctx.fillText(line, x + keyW / 2, lineY);
+
+      if (d.mnemo) {
+        const mnemoFont = 26 * dpr;
+        ctx.font = `${mnemoFont}px -apple-system, "PingFang SC", sans-serif`;
+        ctx.fillStyle = '#475569';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        const maxMnemoW = keyW - 20 * dpr;
+        const mnemoLines = [];
+        let cur = '';
+        for (const ch of d.mnemo) {
+          const test = cur + ch;
+          if (ctx.measureText(test).width > maxMnemoW && cur) {
+            mnemoLines.push(cur);
+            cur = ch;
+          } else {
+            cur = test;
+          }
+        }
+        if (cur) mnemoLines.push(cur);
+        const lineH = 30 * dpr;
+        const mnemoBottomY = y + keyH - 14 * dpr;
+        const mnemoFirstLineBottomY = mnemoBottomY - (mnemoLines.length - 1) * lineH;
+        const lineY2 = mnemoFirstLineBottomY - mnemoFont - 6 * dpr;
+
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 1 * dpr;
+        ctx.beginPath();
+        ctx.moveTo(x + 14 * dpr, lineY2);
+        ctx.lineTo(x + keyW - 14 * dpr, lineY2);
+        ctx.stroke();
+
+        mnemoLines.forEach((ln, i) => {
+          ctx.fillText(ln, x + keyW / 2, mnemoBottomY - (mnemoLines.length - 1 - i) * lineH);
+        });
+      }
+
+      x += keyW + gap;
+    });
+  });
+
+  const a = document.createElement('a');
+  a.download = '自然龙双拼键位助记图.png';
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+}
+
+document.getElementById('overlay').onclick = closeEdit;
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeEdit();
+});
+document.getElementById('editCode').addEventListener('keydown', e => {
+  if (e.key === 'Enter') saveEdit();
+});
+document.getElementById('editMnemo').addEventListener('keydown', e => {
+  if (e.key === 'Enter') saveEdit();
+});
+
+render();
+</script>
+</body>
+</html>
